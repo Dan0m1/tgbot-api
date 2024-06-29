@@ -3,6 +3,9 @@ import {TaskRepository} from "../database/repositories/TaskRepository";
 import {UserRepository} from "../database/repositories/UserRepository";
 import {PrismaService} from "../database/PrismaService";
 import { JarRepository } from '../database/repositories/JarRepository';
+import { JarUserRepository } from '../database/repositories/JarUserRepository';
+import { ListRepository } from '../database/repositories/ListRepository';
+import { ListCellRepository } from '../database/repositories/ListCellRepository';
 
 @Global()
 @Module({
@@ -10,13 +13,19 @@ import { JarRepository } from '../database/repositories/JarRepository';
         PrismaService,
         TaskRepository,
         UserRepository,
-        JarRepository
+        JarRepository,
+        JarUserRepository,
+        ListRepository,
+        ListCellRepository,
     ],
     exports:[
         PrismaService,
         TaskRepository,
         UserRepository,
-        JarRepository
+        JarRepository,
+        JarUserRepository,
+        ListRepository,
+        ListCellRepository,
     ]
 })
 export class PrismaModule{}

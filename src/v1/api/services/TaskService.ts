@@ -4,6 +4,7 @@ import {DbTask} from "../../database/entities/DbTask";
 import {CreateTasksDTO} from "../../DTOs/CreateTasksDTO";
 import {UserService} from "./UserService";
 import { Prisma } from '@prisma/client';
+import { DeleteTaskDTO } from '../../DTOs/DeleteTaskDTO';
 
 @Injectable()
 export class TaskService {
@@ -32,6 +33,11 @@ export class TaskService {
                 })
             }
         })
+    }
+
+    async delete(body: DeleteTaskDTO){
+        await this.taskRepository.delete(body);
+        return true;
     }
 
 }

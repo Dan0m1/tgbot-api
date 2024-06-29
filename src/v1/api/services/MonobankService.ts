@@ -6,6 +6,7 @@ import { AxiosError } from 'axios';
 import { ClientInfo } from '../../database/entities/ClientInfo';
 import { ConfigService } from '@nestjs/config';
 import { Jar } from '@prisma/client';
+import { StatementResponse } from '../../responses/StatementResponse';
 
 @Injectable()
 export class MonobankService {
@@ -14,11 +15,11 @@ export class MonobankService {
 
   async getJarInfo(): Promise<Jar> {
     const clientInfo = await this.fetchClientInfo();
-    const account = this.configService.get<string>("jarAccount");
-    return clientInfo.jar.find(jar => jar.id === account);
+    const account = this.configService.get<string>("account");
+    return clientInfo.jars.find(jar => jar.id === account);
   }
 
-  async fetchClientInfo():Promise<ClientInfo>{
+  private async fetchClientInfo():Promise<ClientInfo>{
     const url = this.configService.get<string>("monobankClientInfoUrl");
     const config = {
       headers: {"X-TOKEN": this.configService.get<string>("xToken")}
@@ -32,10 +33,12 @@ export class MonobankService {
     return data;
   }
 
-  async getJarStatements(){
+  async getJarStatements(): Promise<StatementResponse[]>{
     const statements = await this.fetchStatements();
+    console.log(statements)
     return statements.map((statement: Statement) => {
       return {
+        id: statement.id,
         operationAmount: statement.operationAmount,
         description: statement.description,
         comment: statement.comment,
@@ -43,10 +46,10 @@ export class MonobankService {
     })
   }
 
-  async fetchStatements():Promise<Statement[]> {
+  private async fetchStatements():Promise<Statement[]> {
     const from = (Date.now()-4*7*24*60*60*1000)/1000;
-    const account = this.configService.get<string>("jarAccount");
-    const url = this.configService.get<string>("monobankStatementUrl")+account+"/"+from;
+    const account = this.configService.get<string>("account");
+    const url = this.configService.get<string>("monobankStatementUrl")+account+"/"+Math.trunc(from);
     const config = {
       headers: {"X-TOKEN": this.configService.get<string>("xToken")}
     }

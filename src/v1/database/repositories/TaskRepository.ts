@@ -9,9 +9,14 @@ export class TaskRepository {
     {}
 
     async create(data: Prisma.TaskCreateInput): Promise<DbTask>{
-        console.log()
         return this.prisma.task.create({
             data
+        })
+    }
+
+    async delete(data: Prisma.TaskWhereUniqueInput){
+        await this.prisma.task.delete({
+            where: data,
         })
     }
 }

@@ -23,7 +23,6 @@ export class UsersController {
 
     @Get()
     async getAllTasks(@Query() query: QueryTasksDTO): Promise<UserWithTasksResponse|null>{
-        console.log(query)
         const userWithTasks: DbUserWithTasks|null =  await this.userService.getAllTasks(query);
         return this.userMapper.getUserWithTasks(userWithTasks);
     }

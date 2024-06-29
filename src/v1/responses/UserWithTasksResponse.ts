@@ -1,9 +1,7 @@
 import {Task} from "@prisma/client";
+import { UserResponse } from './UserResponse';
 
-export class UserWithTasksResponse {
-    id: number;
-    userId: string;
-    username: string;
+export class UserWithTasksResponse extends UserResponse{
     name: string;
     tasks: Task[];
 }

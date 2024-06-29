@@ -14,6 +14,7 @@ import { MonobankModule } from './modules/MonobankModule';
         }),
         ApiModule,
         PrismaModule,
+        MonobankModule,
     ]
 })
 export class AppModule{}

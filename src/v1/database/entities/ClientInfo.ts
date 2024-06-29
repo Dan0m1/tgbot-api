@@ -16,5 +16,5 @@ export class ClientInfo {
       maskedPan: string[];
       iban: string;
     }[];
-  jar: Jar[]
+  jars: Jar[]
 }

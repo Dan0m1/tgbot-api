@@ -7,5 +7,4 @@ export class DbJar{
   description: string;
   balance: number;
   goal: number;
-  JarUser: DbJarUser[];
 }

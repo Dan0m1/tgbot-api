@@ -7,23 +7,22 @@ import {Prisma} from '@prisma/client'
 export class JarRepository {
   constructor(private prisma: PrismaService) {}
 
-  private include = {
-    JarUser: true
-  }
-
   async findOne(id: string): Promise<DbJar> {
     return this.prisma.jar.findFirst({
       where: {id},
-      include: this.include,
     })
   }
 
   async update(data: Prisma.JarUpdateInput){
-    return this.prisma.jar.update({
+    await this.prisma.jar.update({
       where:{
         id: data.id as string,
       },
-      data:data
+      data:{
+        balance: data.balance,
+        description: data.description,
+        goal: data.goal,
+      }
     })
   }
 }

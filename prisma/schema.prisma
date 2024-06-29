@@ -35,9 +35,29 @@ model Jar {
 }
 
 model JarUser {
+  id           Int      @id @default(autoincrement())
+  name         String   @unique
+  fulfilled    Boolean  @default(false)
+  moneyGoal    Int
+  moneySent    Int      @default(0)
+  jarId        String
+  jar          Jar      @relation(fields: [jarId], references: [id])
+  statementIds String[]
+}
+
+model List {
+  id        Int        @id @default(autoincrement())
+  title     String     @unique
+  updatedAt DateTime   @default(now()) @updatedAt
+  cells     ListCell[]
+}
+
+model ListCell {
   id        Int     @id @default(autoincrement())
-  name      String
-  fulfilled Boolean
-  jarId     String
-  jar       Jar     @relation(fields: [jarId], references: [id])
+  list      List    @relation(fields: [listTitle], references: [title], onDelete: Cascade)
+  listTitle String
+  item      String
+  amount    Int
+  isDone    Boolean @default(false)
+  assignee  String?
 }

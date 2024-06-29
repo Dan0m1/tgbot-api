@@ -20,15 +20,14 @@ export class UserRepository {
     }
 
     async findOne(data: Prisma.UserWhereInput){
-        const p =  await this.prisma.user.findFirst({
+        const user =  await this.prisma.user.findFirst({
             where:{
                 userId: data.userId,
                 username: data.username,
             },
             include: this.include
         })
-        console.log(p)
-        return p;
+        return user;
     }
 
 }

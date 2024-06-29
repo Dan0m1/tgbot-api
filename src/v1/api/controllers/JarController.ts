@@ -9,7 +9,6 @@ export class JarController {
   constructor(private jarService: JarService, private jarMapper: JarMapper) {}
    @Get()
    async getJar(): Promise<JarResponse> {
-      await this.jarService.updateFromMonobank()
       const jar: DbJar = await this.jarService.findOne();
       return await this.jarMapper.getJar(jar);
    }
