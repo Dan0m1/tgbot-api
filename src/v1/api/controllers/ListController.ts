@@ -19,9 +19,7 @@ export class ListController {
 
   @Get("/:title")
   async getOne(@Param("title") title: string): Promise<ListResponse> {
-    console.log(title)
     const list: DbList =  await this.listService.get({title});
-    console.log(list)
     return await this.listMapper.getList(list);
   }
 

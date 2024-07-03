@@ -9,7 +9,11 @@ export class ListRepository {
   }
 
   private include ={
-    cells: true
+    cells: {
+      orderBy:{
+        item: "asc" as Prisma.SortOrder
+      }
+    }
   }
 
   async get(data: Prisma.ListWhereInput): Promise<DbList>{
@@ -17,7 +21,7 @@ export class ListRepository {
       where:{
         title: data.title,
       },
-      include: this.include
+      include: this.include,
     })
   }
 

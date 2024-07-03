@@ -27,6 +27,10 @@ export class ListCellService {
     })
   }
 
+  async getOneById(id: number): Promise<DbListCell> {
+    return this.listCellRepository.findOne(id);
+  }
+
   async updateCell(body: UpdateListCellDTO){
     const {id, ...data} = body;
     return this.listCellRepository.updateById({

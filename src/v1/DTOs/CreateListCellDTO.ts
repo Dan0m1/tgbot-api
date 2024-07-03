@@ -7,8 +7,9 @@ export class CreateListCellDTO {
   @IsString()
   item: string;
 
+  @IsOptional()
   @IsNumber()
-  amount: number;
+  amount?: number;
 
   @IsOptional()
   @IsString()

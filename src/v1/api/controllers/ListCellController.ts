@@ -14,16 +14,22 @@ export class ListCellController {
   @Post()
   async create(@Body() body: CreateListCellDTO){
     await this.listCellService.create(body);
+    return true;
   }
 
-  @Get()
-  async getByAssignee(@Query('assignee') assignee: string): Promise<ListFromCellsResponse> {
+  @Get("/assignee/:assignee")
+  async getListByAssignee(@Param('assignee') assignee: string): Promise<ListFromCellsResponse> {
     const listCells: DbListCell[] = await this.listCellService.getCellsByAssignee(assignee);
     return await this.listCellMapper.getListFromCells(assignee, listCells);
+  }
+  @Get("/id/:id")
+  async getById(@Param('id') id: number): Promise<DbListCell> {
+    return await this.listCellService.getOneById(id);
   }
 
   @Put()
   async updateCell(@Body() body: UpdateListCellDTO){
+    console.log(body)
     const updatedCell: DbListCell = await this.listCellService.updateCell(body);
     return true;
   }

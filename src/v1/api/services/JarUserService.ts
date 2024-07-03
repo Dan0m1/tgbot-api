@@ -13,7 +13,6 @@ export class JarUserService {
   }
 
   async create(body: CreateJarUserDTO): Promise<DbJarUser>{
-    console.log(body)
     const jarId = this.configService.get<string>('account');
     return this.jarUserRepository.create({
       ...body,
@@ -45,7 +44,6 @@ export class JarUserService {
       id = statement.id;
       name = statement.comment.slice();
       jarUser = await this.getOne(name);
-      console.log(jarUser)
       if(!jarUser ||jarUser.statementIds.includes(id)){
         continue;
       }

@@ -35,7 +35,6 @@ export class MonobankService {
 
   async getJarStatements(): Promise<StatementResponse[]>{
     const statements = await this.fetchStatements();
-    console.log(statements)
     return statements.map((statement: Statement) => {
       return {
         id: statement.id,

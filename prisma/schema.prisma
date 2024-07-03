@@ -57,7 +57,7 @@ model ListCell {
   list      List    @relation(fields: [listTitle], references: [title], onDelete: Cascade)
   listTitle String
   item      String
-  amount    Int
+  amount    Int?
   isDone    Boolean @default(false)
   assignee  String?
 }

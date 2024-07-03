@@ -21,6 +21,12 @@ export class ListCellRepository {
     })
   }
 
+  async findOne(id: number): Promise<DbListCell> {
+    return this.prisma.listCell.findUnique({
+      where: {id}
+    })
+  }
+
   async updateById(data: Prisma.ListCellUpdateArgs){
     return this.prisma.listCell.update(data)
   }
