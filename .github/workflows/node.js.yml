@@ -23,6 +23,8 @@ jobs:
 
   start:
 
+    runs-on: self-hosted
+
     steps:
       - run: pm2 restart all
       - run: sudo service nginx restart
