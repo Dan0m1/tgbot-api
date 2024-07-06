@@ -1,3 +1,4 @@
+require('dotenv').config({path: '/var/www/vacationbot/_work/.env'});
 import { ConfigService } from '@nestjs/config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
