@@ -10,7 +10,8 @@ import { MonobankModule } from './modules/MonobankModule';
     imports:[
         ConfigModule.forRoot({
             isGlobal: true,
-            load: [configuration]
+            load: [configuration],
+            envFilePath: [`.${process.env.NODE_ENV}.env`, '.env'],
         }),
         ApiModule,
         PrismaModule,
