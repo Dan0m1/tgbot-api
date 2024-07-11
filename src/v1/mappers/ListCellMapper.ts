@@ -9,7 +9,7 @@ export class ListCellMapper {
         return ({
           id: cell.id,
           item: cell.item,
-          amount: cell.amount,
+          description: cell.description,
           isDone: cell.isDone,
         })
       })

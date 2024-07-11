@@ -5,8 +5,8 @@ export class UpdateListCellDTO {
   id: number;
 
   @IsOptional()
-  @IsNumber()
-  amount?: number;
+  @IsString()
+  description?: string;
 
   @IsOptional()
   @IsBoolean()

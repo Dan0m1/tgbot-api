@@ -53,11 +53,11 @@ model List {
 }
 
 model ListCell {
-  id        Int     @id @default(autoincrement())
-  list      List    @relation(fields: [listTitle], references: [title], onDelete: Cascade)
-  listTitle String
-  item      String
-  amount    Int?
-  isDone    Boolean @default(false)
-  assignee  String?
+  id          Int     @id @default(autoincrement())
+  list        List    @relation(fields: [listTitle], references: [title], onDelete: Cascade)
+  listTitle   String
+  item        String
+  description String?
+  isDone      Boolean @default(false)
+  assignee    String?
 }

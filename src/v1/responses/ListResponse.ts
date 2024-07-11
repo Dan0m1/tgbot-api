@@ -3,7 +3,7 @@ export class ListResponse {
   cells: {
     id: number;
     item: string;
-    amount: number;
+    description?: string;
     isDone?: boolean;
     assignee?: string;
   }[]

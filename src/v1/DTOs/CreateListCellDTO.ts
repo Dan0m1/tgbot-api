@@ -1,4 +1,4 @@
-import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
+import {IsOptional, IsString } from 'class-validator';
 
 export class CreateListCellDTO {
   @IsString()
@@ -8,8 +8,8 @@ export class CreateListCellDTO {
   item: string;
 
   @IsOptional()
-  @IsNumber()
-  amount?: number;
+  @IsString()
+  description?: string;
 
   @IsOptional()
   @IsString()
